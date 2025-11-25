@@ -1,27 +1,44 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { TerminalWindow, Prompt, Output } from "@/components/Terminal";
+import { TerminalWindow, Output } from "@/components/Terminal";
 
-interface SearchResult {
+interface Post {
   slug: string;
   title: string;
   description: string;
   date: string;
+  tags: string[];
+  excerpt: string;
 }
 
 export default function SearchPage() {
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<SearchResult[]>([]);
+  const [results, setResults] = useState<Post[]>([]);
   const [searched, setSearched] = useState(false);
+  const [posts, setPosts] = useState<Post[]>([]);
 
-  const handleSearch = async () => {
+  // 加载搜索索引
+  useEffect(() => {
+    fetch("/search-index.json")
+      .then((res) => res.json())
+      .then((data) => setPosts(data))
+      .catch(() => setPosts([]));
+  }, []);
+
+  const handleSearch = () => {
     if (!query.trim()) return;
-    
-    const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
-    const data = await res.json();
-    setResults(data.results);
+
+    const q = query.toLowerCase();
+    const filtered = posts.filter(
+      (post) =>
+        post.title.toLowerCase().includes(q) ||
+        post.description.toLowerCase().includes(q) ||
+        post.tags.some((tag) => tag.toLowerCase().includes(q)) ||
+        post.excerpt.toLowerCase().includes(q)
+    );
+    setResults(filtered);
     setSearched(true);
   };
 

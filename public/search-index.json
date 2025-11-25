@@ -1,0 +1,14 @@
+[
+  {
+    "slug": "getting-started",
+    "title": "Terminal Blog 使用指南",
+    "description": "快速上手 Terminal Blog，了解如何创建文章、自定义配置和部署上线。",
+    "date": "2025-11-25",
+    "tags": [
+      "guide",
+      "tutorial",
+      "documentation"
+    ],
+    "excerpt": "欢迎使用   Terminal Blog  ！这是一个基于 Next.js 15 构建的终端风格博客模板。     快速开始      创建新文章  在  content/posts/  目录下创建  .mdx  文件：     bash touch content/posts/my-first-post.mdx          文章格式  每篇文章需要包含 frontmatter 头部信息："
+  }
+]

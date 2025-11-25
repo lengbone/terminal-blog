@@ -170,7 +170,47 @@ git commit -m "Add new post"
 git push
 ```
 
-## 🎮 终端命令
+## � 部署到 Cloudflare Pages
+
+Cloudflare Pages 是另一个优秀的部署平台，**国内访问速度更快**。
+
+### 部署步骤
+
+1. **Fork 仓库**
+   - 访问 [Terminal Blog GitHub](https://github.com/lengbone/terminal-blog)
+   - 点击右上角 `Fork` 按钮
+
+2. **注册 Cloudflare**
+   - 访问 [dash.cloudflare.com](https://dash.cloudflare.com)
+   - 注册并登录账号
+
+3. **创建 Pages 项目**
+   - 进入 `Workers & Pages` → `Pages`
+   - 点击 `Create a project` → `Connect to Git`
+   - 授权并选择你 Fork 的 `terminal-blog` 仓库
+
+4. **配置构建设置**
+   - Framework preset: `Next.js`
+   - Build command: `npm run build`
+   - Build output directory: `.next`
+   - 点击 `Save and Deploy`
+
+5. **等待部署**
+   - 首次部署约需 2-3 分钟
+   - 部署成功后会获得一个 `.pages.dev` 域名
+
+### 绑定自定义域名
+
+1. 进入项目 → `Custom domains`
+2. 点击 `Set up a custom domain`
+3. 输入你的域名
+4. 按提示添加 DNS 记录（如果域名在 Cloudflare 管理会自动配置）
+
+### 更新博客
+
+与 Vercel 一样，每次 `git push` 会自动触发部署。
+
+## �🎮 终端命令
 
 在博客任意页面输入命令：
 

@@ -1,0 +1,137 @@
+---
+title: "Terminal Blog 使用指南"
+date: "2025-11-25"
+description: "快速上手 Terminal Blog，了解如何创建文章、自定义配置和部署上线。"
+tags: ["guide", "tutorial", "documentation"]
+---
+
+欢迎使用 **Terminal Blog**！这是一个基于 Next.js 15 构建的终端风格博客模板。
+
+## 快速开始
+
+### 创建新文章
+
+在 `content/posts/` 目录下创建 `.mdx` 文件：
+
+```bash
+touch content/posts/my-first-post.mdx
+```
+
+### 文章格式
+
+每篇文章需要包含 frontmatter 头部信息：
+
+```yaml
+---
+title: "文章标题"
+date: "2025-11-25"
+description: "文章简介，会显示在列表页"
+tags: ["tag1", "tag2"]
+---
+```
+
+### Markdown 语法支持
+
+支持完整的 Markdown 语法：
+
+- **粗体** 和 *斜体*
+- `行内代码`
+- [链接](https://example.com)
+- 列表、引用、表格等
+
+### 代码高亮
+
+支持 30+ 种编程语言的语法高亮：
+
+```javascript
+// JavaScript
+const greeting = "Hello, Terminal!";
+console.log(greeting);
+```
+
+```python
+# Python
+def hello():
+    print("Hello, Terminal!")
+```
+
+```bash
+# Shell
+echo "Hello, Terminal!"
+```
+
+## 自定义配置
+
+### 站点信息
+
+编辑 `src/lib/config.ts` 修改站点基本信息：
+
+```typescript
+export const siteConfig = {
+  name: "Terminal Blog",
+  description: "A terminal-style blog built with Next.js",
+  url: "https://yourblog.com",
+  author: {
+    name: "Your Name",
+    role: "Full Stack Developer",
+    location: "Earth",
+    skills: ["TypeScript", "React", "Node.js"],
+    bio: "A developer who loves building things.",
+  },
+  links: {
+    github: "https://github.com/yourusername",
+    twitter: "", // 留空则不显示
+    email: "",
+  },
+};
+```
+
+### 主题颜色
+
+编辑 `src/app/globals.css` 中的 CSS 变量自定义颜色：
+
+```css
+:root {
+  --terminal-green: #22c55e;
+  --terminal-purple: #a855f7;
+  /* ... */
+}
+```
+
+### 社交链接
+
+编辑 `src/components/Layout/Footer.tsx` 修改页脚链接。
+
+## 功能特性
+
+- **深色/浅色主题** - 点击导航栏的 `[light]` / `[dark]` 切换
+- **终端命令** - 在任意页面输入 `help` 查看可用命令
+- **代码复制** - 鼠标悬停代码块显示复制按钮
+- **阅读进度** - 文章页顶部显示阅读进度条
+- **响应式设计** - 完美适配移动端
+- **SEO 优化** - 自动生成 sitemap 和 meta 标签
+
+## 终端命令
+
+在任意页面的命令行输入以下命令：
+
+| 命令 | 功能 |
+|------|------|
+| `help` | 显示帮助信息 |
+| `ls` | 列出所有文章 |
+| `cd posts` | 跳转到文章列表 |
+| `cd about` | 跳转到关于页面 |
+| `clear` | 清空终端 |
+| `theme` | 切换主题 |
+
+## 技术栈
+
+- **Next.js 15** - React 框架
+- **TypeScript** - 类型安全
+- **TailwindCSS** - 样式框架
+- **MDX** - Markdown 增强
+- **highlight.js** - 代码高亮
+
+---
+
+开始写作吧！🚀

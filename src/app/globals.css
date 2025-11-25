@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root,
+[data-theme="dark"] {
+  --terminal-bg: #030303;
+  --terminal-bg-secondary: #141414;
+  --terminal-green: #22c55e;
+  --terminal-gray: #6b7280;
+  --terminal-gray-light: #9ca3af;
+  --terminal-purple: #a855f7;
+  --terminal-cyan: #06b6d4;
+  --terminal-yellow: #eab308;
+  --terminal-red: #ef4444;
+  --terminal-border: #374151;
+  --terminal-text: #e5e7eb;
+  --terminal-ring: rgba(255, 255, 255, 0.1);
+  --terminal-shadow: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] {
+  --terminal-bg: #fafafa;
+  --terminal-bg-secondary: #ffffff;
+  --terminal-green: #16a34a;
+  --terminal-gray: #6b7280;
+  --terminal-gray-light: #4b5563;
+  --terminal-purple: #9333ea;
+  --terminal-cyan: #0891b2;
+  --terminal-yellow: #ca8a04;
+  --terminal-red: #dc2626;
+  --terminal-border: #d1d5db;
+  --terminal-text: #1f2937;
+  --terminal-ring: rgba(0, 0, 0, 0.08);
+  --terminal-shadow: rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, monospace;
+  background-color: var(--terminal-bg);
+  color: var(--terminal-text);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Terminal scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--terminal-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--terminal-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--terminal-gray);
+}
+
+/* Cursor blink animation */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Typing animation */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Selection style */
+::selection {
+  background-color: var(--terminal-green);
+  color: var(--terminal-bg);
+}
+
+/* Code syntax highlighting - Terminal theme */
+.hljs,
+pre code {
+  background: transparent !important;
+  color: var(--terminal-text);
+}
+
+/* 无语言标记的代码块默认样式 */
+pre:not(:has(.hljs)) code {
+  color: var(--terminal-text);
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-name,
+.hljs-tag {
+  color: var(--terminal-purple);
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-section,
+.hljs-attribute,
+.hljs-literal,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type {
+  color: var(--terminal-green);
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion {
+  color: var(--terminal-gray);
+}
+
+.hljs-number,
+.hljs-regexp,
+.hljs-symbol,
+.hljs-variable,
+.hljs-bullet,
+.hljs-link {
+  color: var(--terminal-cyan);
+}
+
+.hljs-meta,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: var(--terminal-yellow);
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-addition {
+  color: var(--terminal-green);
+}
+
+.hljs-attr {
+  color: var(--terminal-cyan);
+}
+
+.hljs-function {
+  color: var(--terminal-yellow);
+}
+
+.hljs-params {
+  color: var(--terminal-text);
+}

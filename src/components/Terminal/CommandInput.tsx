@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { useTheme, type Theme } from "@/hooks";
 
 const COMMANDS: Record<string, { description: string; action?: string }> = {
   help: { description: "Show available commands" },
@@ -17,6 +18,7 @@ const COMMANDS: Record<string, { description: string; action?: string }> = {
   search: { description: "Search posts", action: "/search" },
   clear: { description: "Clear terminal" },
   whoami: { description: "About me", action: "/about" },
+  theme: { description: "Change theme (theme <name>)" },
 };
 
 interface CommandInputProps {
@@ -30,7 +32,7 @@ export default function CommandInput({ onOutput, onClear }: CommandInputProps) {
   const [historyIndex, setHistoryIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
-
+  const { theme, changeTheme, getThemeList } = useTheme();
 
   const executeCommand = (cmd: string) => {
     const trimmedCmd = cmd.trim().toLowerCase();
@@ -62,6 +64,22 @@ export default function CommandInput({ onOutput, onClear }: CommandInputProps) {
         router.push("/");
       } else {
         router.push(`/${path}`);
+      }
+    } else if (trimmedCmd === "theme") {
+      // 显示可用主题列表
+      const themeList = getThemeList();
+      const themeText = themeList
+        .map((t) => `  ${t.key.padEnd(10)} - ${t.description}${t.key === theme ? " (current)" : ""}`)
+        .join("\n");
+      onOutput?.(`Available themes:\n${themeText}\n\nUsage: theme <name>`);
+    } else if (trimmedCmd.startsWith("theme ")) {
+      // 切换主题
+      const themeName = trimmedCmd.replace("theme ", "") as Theme;
+      if (changeTheme(themeName)) {
+        onOutput?.(`Theme changed to: ${themeName}`);
+      } else {
+        const themeList = getThemeList();
+        onOutput?.(`Unknown theme: ${themeName}\nAvailable: ${themeList.map((t) => t.key).join(", ")}`);
       }
     } else {
       onOutput?.(`command not found: ${trimmedCmd}\nType 'help' for available commands.`);

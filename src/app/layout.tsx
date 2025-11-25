@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Header, Footer } from "@/components/Layout";
+import { BootAnimation } from "@/components/Animation";
 import { siteConfig } from "@/lib/config";
 import "./globals.css";
 
@@ -42,6 +43,7 @@ export default function RootLayout({
   return (
     <html lang="zh-CN" suppressHydrationWarning>
       <body className="antialiased min-h-screen flex flex-col">
+        <BootAnimation />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

@@ -3,7 +3,7 @@ export const siteConfig = {
   description: "A terminal-style blog built with Next.js",
   url: "https://yourblog.com",
   author: {
-    name: "blubone",
+    name: "bluebone",
     role: "Full Stack Developer",
     location: "Earth",
     skills: ["TypeScript", "React", "Node.js", "Python", "Go"],
